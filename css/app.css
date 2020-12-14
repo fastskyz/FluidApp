@@ -1,0 +1,470 @@
+/*
+    Root elements
+*/
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-green: #77C593;
+  --color-pink-dark: #ED3572;
+  --color-pink-light: #DA68A0;
+}
+
+html, body {
+  font-family: "Helvetica Neue";
+  font-size: 16px;
+  position: relative;
+  z-index: -10;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.7) 75%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/*
+    Effects
+*/
+.fx-float {
+  position: absolute;
+}
+.fx-rise {
+  position: fixed;
+  opacity: 1;
+  z-index: -1;
+}
+.fx-rise--1 {
+  width: rem;
+  transition: bottom 25s linear, opacity 20s linear;
+}
+.fx-rise--2 {
+  width: rem;
+  transition: bottom 50s linear, opacity 40s linear;
+}
+.fx-rise--3 {
+  width: rem;
+  transition: bottom 75s linear, opacity 60s linear;
+}
+.fx-rise--4 {
+  width: rem;
+  transition: bottom 100s linear, opacity 80s linear;
+}
+.fx-rise--5 {
+  width: rem;
+  transition: bottom 125s linear, opacity 100s linear;
+}
+.fx-rise--6 {
+  width: rem;
+  transition: bottom 150s linear, opacity 120s linear;
+}
+.fx-rise--7 {
+  width: rem;
+  transition: bottom 175s linear, opacity 140s linear;
+}
+.fx-rise--8 {
+  width: rem;
+  transition: bottom 200s linear, opacity 160s linear;
+}
+.fx-rise--9 {
+  width: rem;
+  transition: bottom 225s linear, opacity 180s linear;
+}
+.fx-rise--10 {
+  width: rem;
+  transition: bottom 250s linear, opacity 200s linear;
+}
+.fx-circle {
+  border-radius: 50%;
+  border: var(--color-white) 2px solid;
+}
+
+/*
+    Easy Sizing
+*/
+.size-w-1 {
+  width: 1rem;
+}
+.size-w-2 {
+  width: 2rem;
+}
+.size-w-3 {
+  width: 3rem;
+}
+.size-w-4 {
+  width: 4rem;
+}
+.size-w-5 {
+  width: 5rem;
+}
+.size-w-6 {
+  width: 6rem;
+}
+.size-w-7 {
+  width: 7rem;
+}
+.size-w-8 {
+  width: 8rem;
+}
+.size-w-9 {
+  width: 9rem;
+}
+.size-w-10 {
+  width: 10rem;
+}
+.size-w-11 {
+  width: 11rem;
+}
+.size-w-12 {
+  width: 12rem;
+}
+.size-w-full {
+  width: 100%;
+}
+.size-w-half {
+  width: 50%;
+}
+.size-w-third {
+  width: 33%;
+}
+.size-h-1 {
+  height: 1rem;
+}
+.size-h-2 {
+  height: 2rem;
+}
+.size-h-3 {
+  height: 3rem;
+}
+.size-h-4 {
+  height: 4rem;
+}
+.size-h-5 {
+  height: 5rem;
+}
+.size-h-6 {
+  height: 6rem;
+}
+.size-h-7 {
+  height: 7rem;
+}
+.size-h-8 {
+  height: 8rem;
+}
+.size-h-9 {
+  height: 9rem;
+}
+.size-h-10 {
+  height: 10rem;
+}
+.size-h-11 {
+  height: 11rem;
+}
+.size-h-12 {
+  height: 12rem;
+}
+.size-h-full {
+  height: 100%;
+}
+.size-h-half {
+  height: 50%;
+}
+.size-h-third {
+  height: 33%;
+}
+
+/*
+    Defaults
+*/
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 2rem 0 0;
+}
+.title--small {
+  font-size: 2rem;
+}
+.title--right {
+  text-align: right;
+}
+.title--left {
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 1rem 0 0;
+}
+
+div.green {
+  background-color: var(--color-green);
+}
+div.pink {
+  background-color: var(--color-pink-dark);
+}
+
+p.green, b.green, a.green, i.green, h1.green, h2.green, h3.green, h4.green, h5.green, h6.green, span.green {
+  color: var(--color-green);
+}
+p.pink, b.pink, a.pink, i.pink, h1.pink, h2.pink, h3.pink, h4.pink, h5.pink, h6.pink, span.pink {
+  color: var(--color-pink-dark);
+}
+p.regular, b.regular, a.regular, i.regular, h1.regular, h2.regular, h3.regular, h4.regular, h5.regular, h6.regular, span.regular {
+  font-weight: 400;
+}
+p.bold, b.bold, a.bold, i.bold, h1.bold, h2.bold, h3.bold, h4.bold, h5.bold, h6.bold, span.bold {
+  font-weight: 700;
+}
+p.light, b.light, a.light, i.light, h1.light, h2.light, h3.light, h4.light, h5.light, h6.light, span.light {
+  font-weight: 300;
+}
+p.semibold, b.semibold, a.semibold, i.semibold, h1.semibold, h2.semibold, h3.semibold, h4.semibold, h5.semibold, h6.semibold, span.semibold {
+  font-weight: 600;
+}
+p.uppercase, b.uppercase, a.uppercase, i.uppercase, h1.uppercase, h2.uppercase, h3.uppercase, h4.uppercase, h5.uppercase, h6.uppercase, span.uppercase {
+  text-transform: uppercase;
+}
+p.lowercase, b.lowercase, a.lowercase, i.lowercase, h1.lowercase, h2.lowercase, h3.lowercase, h4.lowercase, h5.lowercase, h6.lowercase, span.lowercase {
+  text-transform: lowercase;
+}
+
+/*
+    Components
+*/
+.textdot {
+  font-weight: 300;
+  font-size: 3rem;
+  padding: 0.25rem;
+}
+
+.button {
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  text-decoration: none;
+  border: var(--color-white) 2px solid;
+  border-radius: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  transition: padding 200ms ease;
+}
+.button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: 0.5rem 3.5rem;
+}
+.button--green {
+  background-color: var(--color-green);
+  border-color: var(--color-green);
+}
+.button--green:hover {
+  color: var(--color-white);
+  background-color: var(--color-green);
+}
+.button--shout {
+  text-transform: uppercase;
+}
+
+/* 
+    Sections
+*/
+.visual {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  margin: 4rem 0;
+}
+
+.content {
+  width: 70vw;
+  height: auto;
+  margin: 0 15vw;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.information {
+  min-height: 300px;
+  margin: 10rem 0;
+  width: 100%;
+}
+.information .text {
+  font-size: 1rem;
+  text-align: left;
+  margin: 2rem 1rem;
+  max-width: 800px;
+}
+
+.social {
+  min-height: 100px;
+  padding: 2rem 0 0;
+}
+.social .icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+.social .icons .icon {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.social .icons .icon svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  stroke: var(--color-white);
+}
+.social .icons .icon:hover svg {
+  stroke: var(--color-pink-dark);
+}
+
+form {
+  width: 100%;
+  margin: 5rem 0;
+  max-width: 700px;
+  display: inline-block;
+}
+form .form-group {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+form .form-input {
+  flex: 1;
+  position: relative;
+  font-size: 1rem;
+}
+form .form-input:first-child {
+  margin-right: 0.5rem;
+}
+form .form-input:last-child {
+  margin-left: 0.5rem;
+}
+form .form-input input {
+  width: calc(100% - 2rem);
+  outline: none;
+  border: var(--color-white) 2px solid;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+form .form-input label {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  transition: 400ms ease;
+  opacity: 1;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+form .form-input input:focus ~ label {
+  left: 5rem;
+  opacity: 0;
+}
+form .form-input input:valid ~ label {
+  left: 5rem;
+  opacity: 0;
+}
+form .button {
+  padding: 0.5rem 2rem;
+}
+form .button:last-child {
+  margin-left: 1rem;
+}
+
+.logo-reveal {
+  width: 100%;
+  padding: 10vh 0 0;
+}
+.logo-reveal .logo {
+  width: 100%;
+  max-width: 750px;
+  display: inline-block;
+}
+.logo-reveal .logo svg {
+  width: 100%;
+  height: auto;
+}
+.logo-reveal .logo svg * {
+  transition: 200ms ease;
+}
+.logo-reveal .logo svg path:hover {
+  fill: var(--color-green);
+}
+.logo-reveal .logo svg path:hover ~ path {
+  fill: var(--color-green);
+}
+.logo-reveal .logo svg .stroke-animate:hover {
+  stroke: var(--color-pink-dark);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+
+  .visual {
+    min-height: 150px;
+  }
+
+  #exampleChart {
+    min-height: 150px;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 2.25rem;
+    text-align: center !important;
+  }
+  .title--small {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  form .form-group {
+    flex-direction: column;
+    justify-content: center;
+  }
+  form .form-input {
+    min-width: 60vw;
+  }
+  form .form-input:first-child {
+    margin: 0 0 0.5rem;
+  }
+  form .form-input:last-child {
+    margin: 0.5rem 0 0;
+  }
+  form button {
+    margin-left: 0 !important;
+    margin: 0.5rem 0 0;
+    min-width: 60vw;
+    flex: 1;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+  }
+  .title--small {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+/*# sourceMappingURL=app.css.map */
