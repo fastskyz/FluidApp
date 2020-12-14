@@ -1,0 +1,55 @@
+/*
+    Components
+*/
+.textdot {
+    font-weight: 300;
+    font-size: 3rem;
+    padding: 0.25rem;
+}
+
+.button {
+    padding: 0.5rem 3rem;
+    cursor: pointer;
+    text-decoration: none;
+
+    border: var(--color-white) 2px solid;
+    border-radius: 1rem;
+
+    color: var(--color-white);
+    background-color: var(--color-black);
+
+    transition: padding 200ms ease;
+
+    &:hover {
+        background-color: var(--color-white);
+        color: var(--color-black);
+
+        padding: 0.5rem 3.5rem;
+    }
+
+    &--green {
+        background-color: var(--color-green);
+        border-color: var(--color-green);
+
+        &:hover {
+            color: var(--color-white);
+            background-color: var(--color-green);
+        }
+    }
+
+    &--shout {
+        text-transform: uppercase;
+    }
+}
+
+.link {
+    margin: 0 0.5rem;
+    color: var(--color-white);
+    cursor: pointer;
+
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-green);
+    }
+}

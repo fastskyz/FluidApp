@@ -1,0 +1,27 @@
+/*
+    Effects
+*/
+.fx {
+    &-float {
+        position: absolute;
+    }
+
+    &-rise {
+        position: fixed; // Change to absolute to move with scrolling
+        opacity: 1;
+        z-index: -1;
+
+        @for $i from 1 through 10 {
+            &--#{$i} {
+                width: rem;
+                transition: bottom #{$i * 25}s linear, opacity #{$i * 20}s linear;
+            }
+        }
+    }
+
+    &-circle {
+        border-radius: 50%;
+        border: var(--color-white) 2px solid;
+        //background-color: var(--color-black);
+    }
+}

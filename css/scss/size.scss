@@ -1,0 +1,46 @@
+/*
+    Easy Sizing
+*/
+.size {
+    &-w {
+        @for $i from 1 through 12 {
+           &-#{$i} {
+               width: #{$i}rem;
+           }
+        }
+
+        &-full {
+            width: 100%;
+        }
+
+        &-half {
+            width: 50%;
+        }
+
+        &-third {
+            width: 33%;
+        }
+    }
+
+    &-h {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                height: #{$i}rem;
+            }
+        }
+
+        &-full {
+            height: 100%;
+        }
+
+        &-half {
+            height: 50%;
+        }
+
+        &-third {
+            height: 33%;
+        }
+    }
+
+    
+}

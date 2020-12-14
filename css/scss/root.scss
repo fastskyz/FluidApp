@@ -1,0 +1,33 @@
+/*
+    Root elements
+*/
+:root {
+    --color-white: #fff;
+    --color-black: #000;
+    --color-green: #77C593;
+    --color-pink-dark: #ED3572;
+    --color-pink-light: #DA68A0;
+}
+
+html, body {
+    font-family: 'Helvetica Neue';
+    font-size: 16px;
+
+    position: relative;
+    z-index: -10;
+    
+    padding: 0;
+    margin: 0;
+
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.2) 100%);
+}

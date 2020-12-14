@@ -28,60 +28,145 @@ html, body {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.7) 75%, rgba(0, 0, 0, 0.2) 100%);
 }
 
-/*
-    Effects
+/* 
+    Sections
 */
-.fx-float {
-  position: absolute;
+.visual {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  margin: 4rem 0;
 }
-.fx-rise {
-  position: fixed;
-  opacity: 1;
-  z-index: -1;
+
+.content {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  text-align: center;
+  padding: 2rem 0;
 }
-.fx-rise--1 {
-  width: rem;
-  transition: bottom 25s linear, opacity 20s linear;
+
+header {
+  min-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.fx-rise--2 {
-  width: rem;
-  transition: bottom 50s linear, opacity 40s linear;
+
+main {
+  background-color: var(--color-black);
+  min-height: 100vh;
+  z-index: 1;
+  height: auto;
+  padding: 0 15vw;
+  margin: 0;
+  text-align: center;
 }
-.fx-rise--3 {
-  width: rem;
-  transition: bottom 75s linear, opacity 60s linear;
+
+footer {
+  min-height: 200px;
 }
-.fx-rise--4 {
-  width: rem;
-  transition: bottom 100s linear, opacity 80s linear;
+
+/*
+    Components
+*/
+.textdot {
+  font-weight: 300;
+  font-size: 3rem;
+  padding: 0.25rem;
 }
-.fx-rise--5 {
-  width: rem;
-  transition: bottom 125s linear, opacity 100s linear;
-}
-.fx-rise--6 {
-  width: rem;
-  transition: bottom 150s linear, opacity 120s linear;
-}
-.fx-rise--7 {
-  width: rem;
-  transition: bottom 175s linear, opacity 140s linear;
-}
-.fx-rise--8 {
-  width: rem;
-  transition: bottom 200s linear, opacity 160s linear;
-}
-.fx-rise--9 {
-  width: rem;
-  transition: bottom 225s linear, opacity 180s linear;
-}
-.fx-rise--10 {
-  width: rem;
-  transition: bottom 250s linear, opacity 200s linear;
-}
-.fx-circle {
-  border-radius: 50%;
+
+.button {
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  text-decoration: none;
   border: var(--color-white) 2px solid;
+  border-radius: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  transition: padding 200ms ease;
+}
+.button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: 0.5rem 3.5rem;
+}
+.button--green {
+  background-color: var(--color-green);
+  border-color: var(--color-green);
+}
+.button--green:hover {
+  color: var(--color-white);
+  background-color: var(--color-green);
+}
+.button--shout {
+  text-transform: uppercase;
+}
+
+.link {
+  margin: 0 0.5rem;
+  color: var(--color-white);
+  cursor: pointer;
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--color-green);
+}
+
+/*
+    Defaults
+*/
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 2rem 0 0;
+}
+.title--small {
+  font-size: 2rem;
+}
+.title--right {
+  text-align: right;
+}
+.title--left {
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 1rem 0 0;
+}
+
+div.green {
+  background-color: var(--color-green);
+}
+div.pink {
+  background-color: var(--color-pink-dark);
+}
+
+p.green, b.green, a.green, i.green, h1.green, h2.green, h3.green, h4.green, h5.green, h6.green, span.green {
+  color: var(--color-green);
+}
+p.pink, b.pink, a.pink, i.pink, h1.pink, h2.pink, h3.pink, h4.pink, h5.pink, h6.pink, span.pink {
+  color: var(--color-pink-dark);
+}
+p.regular, b.regular, a.regular, i.regular, h1.regular, h2.regular, h3.regular, h4.regular, h5.regular, h6.regular, span.regular {
+  font-weight: 400;
+}
+p.bold, b.bold, a.bold, i.bold, h1.bold, h2.bold, h3.bold, h4.bold, h5.bold, h6.bold, span.bold {
+  font-weight: 700;
+}
+p.light, b.light, a.light, i.light, h1.light, h2.light, h3.light, h4.light, h5.light, h6.light, span.light {
+  font-weight: 300;
+}
+p.semibold, b.semibold, a.semibold, i.semibold, h1.semibold, h2.semibold, h3.semibold, h4.semibold, h5.semibold, h6.semibold, span.semibold {
+  font-weight: 600;
+}
+p.uppercase, b.uppercase, a.uppercase, i.uppercase, h1.uppercase, h2.uppercase, h3.uppercase, h4.uppercase, h5.uppercase, h6.uppercase, span.uppercase {
+  text-transform: uppercase;
+}
+p.lowercase, b.lowercase, a.lowercase, i.lowercase, h1.lowercase, h2.lowercase, h3.lowercase, h4.lowercase, h5.lowercase, h6.lowercase, span.lowercase {
+  text-transform: lowercase;
 }
 
 /*
@@ -179,113 +264,73 @@ html, body {
 }
 
 /*
-    Defaults
+    Effects
 */
-.title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin: 2rem 0 0;
+.fx-float {
+  position: absolute;
 }
-.title--small {
-  font-size: 2rem;
+.fx-rise {
+  position: fixed;
+  opacity: 1;
+  z-index: -1;
 }
-.title--right {
-  text-align: right;
+.fx-rise--1 {
+  width: rem;
+  transition: bottom 25s linear, opacity 20s linear;
 }
-.title--left {
-  text-align: left;
+.fx-rise--2 {
+  width: rem;
+  transition: bottom 50s linear, opacity 40s linear;
 }
-
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin: 1rem 0 0;
+.fx-rise--3 {
+  width: rem;
+  transition: bottom 75s linear, opacity 60s linear;
 }
-
-div.green {
-  background-color: var(--color-green);
+.fx-rise--4 {
+  width: rem;
+  transition: bottom 100s linear, opacity 80s linear;
 }
-div.pink {
-  background-color: var(--color-pink-dark);
+.fx-rise--5 {
+  width: rem;
+  transition: bottom 125s linear, opacity 100s linear;
 }
-
-p.green, b.green, a.green, i.green, h1.green, h2.green, h3.green, h4.green, h5.green, h6.green, span.green {
-  color: var(--color-green);
+.fx-rise--6 {
+  width: rem;
+  transition: bottom 150s linear, opacity 120s linear;
 }
-p.pink, b.pink, a.pink, i.pink, h1.pink, h2.pink, h3.pink, h4.pink, h5.pink, h6.pink, span.pink {
-  color: var(--color-pink-dark);
+.fx-rise--7 {
+  width: rem;
+  transition: bottom 175s linear, opacity 140s linear;
 }
-p.regular, b.regular, a.regular, i.regular, h1.regular, h2.regular, h3.regular, h4.regular, h5.regular, h6.regular, span.regular {
-  font-weight: 400;
+.fx-rise--8 {
+  width: rem;
+  transition: bottom 200s linear, opacity 160s linear;
 }
-p.bold, b.bold, a.bold, i.bold, h1.bold, h2.bold, h3.bold, h4.bold, h5.bold, h6.bold, span.bold {
-  font-weight: 700;
+.fx-rise--9 {
+  width: rem;
+  transition: bottom 225s linear, opacity 180s linear;
 }
-p.light, b.light, a.light, i.light, h1.light, h2.light, h3.light, h4.light, h5.light, h6.light, span.light {
-  font-weight: 300;
+.fx-rise--10 {
+  width: rem;
+  transition: bottom 250s linear, opacity 200s linear;
 }
-p.semibold, b.semibold, a.semibold, i.semibold, h1.semibold, h2.semibold, h3.semibold, h4.semibold, h5.semibold, h6.semibold, span.semibold {
-  font-weight: 600;
-}
-p.uppercase, b.uppercase, a.uppercase, i.uppercase, h1.uppercase, h2.uppercase, h3.uppercase, h4.uppercase, h5.uppercase, h6.uppercase, span.uppercase {
-  text-transform: uppercase;
-}
-p.lowercase, b.lowercase, a.lowercase, i.lowercase, h1.lowercase, h2.lowercase, h3.lowercase, h4.lowercase, h5.lowercase, h6.lowercase, span.lowercase {
-  text-transform: lowercase;
-}
-
-/*
-    Components
-*/
-.textdot {
-  font-weight: 300;
-  font-size: 3rem;
-  padding: 0.25rem;
-}
-
-.button {
-  padding: 0.5rem 3rem;
-  cursor: pointer;
-  text-decoration: none;
+.fx-circle {
+  border-radius: 50%;
   border: var(--color-white) 2px solid;
-  border-radius: 1rem;
-  color: var(--color-white);
-  background-color: var(--color-black);
-  transition: padding 200ms ease;
-}
-.button:hover {
-  background-color: var(--color-white);
-  color: var(--color-black);
-  padding: 0.5rem 3.5rem;
-}
-.button--green {
-  background-color: var(--color-green);
-  border-color: var(--color-green);
-}
-.button--green:hover {
-  color: var(--color-white);
-  background-color: var(--color-green);
-}
-.button--shout {
-  text-transform: uppercase;
 }
 
-/* 
-    Sections
-*/
-.visual {
-  width: 100%;
-  height: auto;
-  min-height: 300px;
-  margin: 4rem 0;
+.action-buttons {
+  padding: 2.5rem 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-
-.content {
-  width: 70vw;
-  height: auto;
-  margin: 0 15vw;
-  text-align: center;
-  padding: 2rem 0;
+.action-buttons .button, .action-buttons .link {
+  min-width: 150px;
+}
+.action-buttons .button {
+  padding: 0.5rem 1rem;
 }
 
 .information {
@@ -388,7 +433,7 @@ form .button:last-child {
 }
 .logo-reveal .logo {
   width: 100%;
-  max-width: 750px;
+  max-width: 500px;
   display: inline-block;
 }
 .logo-reveal .logo svg {

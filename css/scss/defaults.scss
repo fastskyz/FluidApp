@@ -1,0 +1,70 @@
+/*
+    Defaults
+*/
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 2rem 0 0;
+
+    &--small {
+        font-size: 2rem;
+    }
+
+    &--right {
+        text-align: right;
+    }
+
+    &--left {
+        text-align: left;
+    }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1rem 0 0;
+}
+
+div {
+    &.green {
+        background-color: var(--color-green);
+    }
+
+    &.pink {
+        background-color: var(--color-pink-dark);
+    }    
+}
+
+p, b, a, i, h1, h2, h3, h4, h5, h6, span {
+    &.green {
+        color: var(--color-green);
+    }
+
+    &.pink {
+        color: var(--color-pink-dark);
+    }
+
+    &.regular {
+        font-weight: 400;
+    }
+
+    &.bold {
+        font-weight: 700;
+    }
+
+    &.light {
+        font-weight: 300;
+    }
+
+    &.semibold {
+        font-weight: 600;
+    }
+    
+    &.uppercase {
+        text-transform: uppercase;
+    }
+
+    &.lowercase {
+        text-transform: lowercase;
+    }
+}

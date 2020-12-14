@@ -1,0 +1,47 @@
+/* 
+    Sections
+*/
+.visual {
+    width: 100%;
+    height: auto;
+
+    min-height: 300px;
+
+    margin: 4rem 0;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+    text-align: center;
+
+    padding: 2rem 0;
+}
+
+header {
+    min-height: calc(100vh - 2rem);
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+main {
+    background-color: var(--color-black);
+    min-height: 100vh;
+    z-index: 1;
+
+    height: auto;
+
+    padding: 0 15vw;
+    margin: 0;
+
+    text-align: center;
+}
+
+footer {
+    min-height: 200px;
+}
