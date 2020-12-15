@@ -92,31 +92,22 @@
                     </div>
 
                     <div class="filters">
-                        <div class="filter">
+                        <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
                             <label for="base-currency">
                                 Base currency:
                             </label>
 
-                            <span class="select-custom-arrow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16.807" height="11.807" viewBox="0 0 16.807 11.807">
-                                    <g id="Group_26" data-name="Group 26" transform="translate(-721.097 -1373.097)">
-                                      <line id="Line_21" data-name="Line 21" x2="7" y2="9" transform="translate(722.5 1374.5)" />
-                                      <line id="Line_22" data-name="Line 22" x1="7" y2="9" transform="translate(729.5 1374.5)" />
-                                    </g>
-                                </svg>
-                            </span>
-
-                            <select name="base-currency" id="base-currency">
+                            <select name="base-currency" id="base-currency" v-model="baseCurrency">
                                 <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
                             </select>
                         </div>
 
-                        <div class="filter">
+                        <div :class="`filter filter--${ searchValid ? 'valid' : 'invalid' }`">
                             <label for="search">
                                 Search:
                             </label>
 
-                            <input type="text" id="search" name="search">
+                            <input type="text" id="search" name="search" v-model="searchString">
                         </div>
                     </div>
 
@@ -133,25 +124,25 @@
                 </div>
 
                 <div class="grid grid--gap-4 pd-t-8">
-                    <div :class="`currency-block grid-item grid-span-x-${curr.size.x} grid-span-y-${curr.size.y}`" v-for="curr in currencies">
+                    <div class="currency-block grid-item grid-span-x-4 grid-span-y-1" v-for="curr in currencyResults">
                         <div class="sign uppercase font-s-2 black">
                             <b class="white">
-                                {{ curr.short }}
+                                {{ curr.name }}
                             </b>
                         </div>
 
                         <div class="value">
-                            <div :class="`status ${curr.up ? 'status--up' : 'status--down'}`">
+                            <div :class="`status ${curr.value <= 1 ? 'status--up' : 'status--down'}`">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
                                     <path id="Polygon_2" data-name="Polygon 2" d="M16,0,32,24H0Z" fill="#ed3572"/>
                                 </svg>                                
                             </div>
                             <span class="number black mr-l-2">
-                                {{ curr.value.toFixed(3) }}
+                                {{ curr.value.toFixed(8) }}
                             </span>
                         </div>
 
-                        <div class="menu" @click="openMenu(curr.short)">
+                        <div class="menu" @click="openMenu(curr.name)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" viewBox="0 0 4 16">
                                 <g id="More" transform="translate(-451 -1217)">
                                     <circle id="Ellipse_20" data-name="Ellipse 20" cx="2" cy="2" r="2" transform="translate(451 1217)"/>

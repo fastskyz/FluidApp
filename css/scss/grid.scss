@@ -24,12 +24,12 @@
     span {
         padding: 0.5rem;
         cursor: pointer;
-    } 
+    }
 }
 
 .grid-span {
     &-x {
-        @for $i from 1 through 12 {
+        @for $i from 1 through 4 {
             &-#{$i} {
                 grid-column: span #{$i};
             }
@@ -37,7 +37,7 @@
     }
 
     &-y {
-        @for $i from 1 through 12 {
+        @for $i from 1 through 4 {
             &-#{$i} {
                 grid-row: span #{$i};
             }

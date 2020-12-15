@@ -1,10 +1,4 @@
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .content {
-        width: 80vw;
-        margin: 0 10vw;
-    }
-
+@media only screen and (max-width: 680px) {
     .visual {
         min-height: 150px;
     }
@@ -52,10 +46,74 @@
             flex: 1;
         }
     }
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .control-bar {
+        height: 196px;
+        flex-direction: column;
+
+        border-radius: 16px;
+
+        .live-sign {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .filters {
+            flex-direction: column;
+            padding: 0;
+
+            .filter {
+                margin: 0;
+
+                select, input {
+                    width: 100%;
+                }
+
+                input {
+                    width: 80%;
+                }
+            }
+        }
+
+        .refresh {
+            a svg {
+                max-width: 24px;
+            }
+        }
+    }
+
+    header {
+        margin: 0 10vw;
+
+        .action-buttons {
+            flex-direction: column;
+
+            a {
+                padding: 1.5rem 0;
+            }
+        }
+
+        .textdot {
+            font-size: 2rem;
+        }
+    }
+
+    .currency-block {
+        border-radius: 16px;
+
+        .sign {
+            border-radius: 8px;
+        }
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 680px) and (max-width: 768px) {
     .title {
         font-size: 2.5rem;
         line-height: 2.75rem;
@@ -65,14 +123,43 @@
             line-height: 2rem;
         }
     }
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .control-bar {
+        height: 96px;
+        
+        .filters {
+            flex-direction: column;
+        }
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
 
+    .control-bar {
+        height: 96px;
+        
+        .filters {
+            flex-direction: column;
+        }
+    }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
 
+@media only screen and (min-width: 1600px) {
+    .grid {
+        grid-template-columns: repeat(16, 1fr);
+    }
 }

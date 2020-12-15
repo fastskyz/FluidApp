@@ -124,6 +124,7 @@ footer {
   max-height: 160px;
   border-radius: 32px;
   position: relative;
+  transition: 400ms ease;
 }
 .currency-block .sign {
   position: absolute;
@@ -158,6 +159,7 @@ footer {
 }
 .currency-block .value .number {
   font-weight: 600;
+  padding: 0;
 }
 .currency-block .menu {
   position: absolute;
@@ -853,7 +855,7 @@ form .button:last-child {
 .filters .filter select, .filters .filter input {
   padding: 0.25rem 0.75rem;
   outline: none;
-  min-width: 200px;
+  min-width: 180px;
   border: 2px solid var(--color-black);
   border-radius: 1.5rem;
   font-size: 0.75rem;
@@ -865,7 +867,7 @@ form .button:last-child {
 }
 .filters .filter .select-custom-arrow {
   position: absolute;
-  right: 0.75rem;
+  right: 1.5rem;
   bottom: 0.5rem;
   width: 0.75rem;
   height: 0.75rem;
@@ -879,6 +881,13 @@ form .button:last-child {
   stroke: var(--color-black);
   stroke-linecap: round;
   stroke-width: 2px;
+}
+.filters .filter--invalid select, .filters .filter--invalid input {
+  border: 2px var(--color-pink-dark) solid;
+  color: var(--color-pink-dark);
+}
+.filters .filter--invalid .select-custom-arrow svg g line {
+  stroke: var(--color-pink-dark);
 }
 
 .grid {
@@ -947,30 +956,6 @@ form .button:last-child {
 .grid-span-x-4 {
   grid-column: span 4;
 }
-.grid-span-x-5 {
-  grid-column: span 5;
-}
-.grid-span-x-6 {
-  grid-column: span 6;
-}
-.grid-span-x-7 {
-  grid-column: span 7;
-}
-.grid-span-x-8 {
-  grid-column: span 8;
-}
-.grid-span-x-9 {
-  grid-column: span 9;
-}
-.grid-span-x-10 {
-  grid-column: span 10;
-}
-.grid-span-x-11 {
-  grid-column: span 11;
-}
-.grid-span-x-12 {
-  grid-column: span 12;
-}
 .grid-span-y-1 {
   grid-row: span 1;
 }
@@ -983,34 +968,10 @@ form .button:last-child {
 .grid-span-y-4 {
   grid-row: span 4;
 }
-.grid-span-y-5 {
-  grid-row: span 5;
-}
-.grid-span-y-6 {
-  grid-row: span 6;
-}
-.grid-span-y-7 {
-  grid-row: span 7;
-}
-.grid-span-y-8 {
-  grid-row: span 8;
-}
-.grid-span-y-9 {
-  grid-row: span 9;
-}
-.grid-span-y-10 {
-  grid-row: span 10;
-}
-.grid-span-y-11 {
-  grid-row: span 11;
-}
-.grid-span-y-12 {
-  grid-row: span 12;
-}
 
 .control-bar {
   max-width: 100%;
-  height: 4rem;
+  height: 64px;
   padding: 0.5rem 2rem;
   border-radius: 2.5rem;
   background-color: var(--color-white);
@@ -1127,13 +1088,7 @@ form .button:last-child {
   stroke: var(--color-pink-dark);
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .content {
-    width: 80vw;
-    margin: 0 10vw;
-  }
-
+@media only screen and (max-width: 680px) {
   .visual {
     min-height: 150px;
   }
@@ -1171,9 +1126,60 @@ form .button:last-child {
     min-width: 60vw;
     flex: 1;
   }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .control-bar {
+    height: 196px;
+    flex-direction: column;
+    border-radius: 16px;
+  }
+  .control-bar .live-sign {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .control-bar .filters {
+    flex-direction: column;
+    padding: 0;
+  }
+  .control-bar .filters .filter {
+    margin: 0;
+  }
+  .control-bar .filters .filter select, .control-bar .filters .filter input {
+    width: 100%;
+  }
+  .control-bar .filters .filter input {
+    width: 80%;
+  }
+  .control-bar .refresh a svg {
+    max-width: 24px;
+  }
+
+  header {
+    margin: 0 10vw;
+  }
+  header .action-buttons {
+    flex-direction: column;
+  }
+  header .action-buttons a {
+    padding: 1.5rem 0;
+  }
+  header .textdot {
+    font-size: 2rem;
+  }
+
+  .currency-block {
+    border-radius: 16px;
+  }
+  .currency-block .sign {
+    border-radius: 8px;
+  }
 }
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 680px) and (max-width: 768px) {
   .title {
     font-size: 2.5rem;
     line-height: 2.75rem;
@@ -1182,8 +1188,40 @@ form .button:last-child {
     font-size: 1.75rem;
     line-height: 2rem;
   }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .control-bar {
+    height: 96px;
+  }
+  .control-bar .filters {
+    flex-direction: column;
+  }
 }
 /* Large devices (laptops/desktops, 992px and up) */
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .control-bar {
+    height: 96px;
+  }
+  .control-bar .filters {
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .grid {
+    grid-template-columns: repeat(16, 1fr);
+  }
+}
 
 /*# sourceMappingURL=app.css.map */

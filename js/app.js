@@ -1,39 +1,3 @@
-// Fixer.io API
-const api_key = '73efda1fbe5e9eafe4b8878d0cc87bce';
-const base_uri = 'http://data.fixer.io/api/';
-
-const base_curr = 'EUR';
-const curr_options = [
-    'USD',
-    'GBP',
-    'AUD',
-    'CAD',
-    'JPY',
-];
-
-const instance = axios.create({
-    baseURL: 'http://data.fixer.io/api/',
-    timeout: 5000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
-
-const getLatest = (curr = base_curr, symbols = curr_options) => {
-    instance.get('/latest', {
-        params: {
-            'access_key': api_key,
-            'symbols': symbols.join(),
-            'format': 1,
-        }
-    }).then(response => {
-        console.log(response);
-    }).catch(err => {
-        console.error(err);
-    });
-}
-
-
 // Define a new component called todo-item
 Vue.component('floating-bubble', {
     props: [
@@ -52,23 +16,35 @@ var app = new Vue({
             { size: 2 },
         ],
         currencyOptions: [
-            'EUR',
-            'USD',
-            'GBP',
-            'AUD',
-            'CAD',
-            'JPY',
         ],
         currencies: [
-            { name: 'Euro', short: 'EUR', value: 1.000, up: true, size: { x: 4, y: 1 } },
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+        ],
+        baseCurrency: 'EUR',
+        searchString: '',
+        searchResults: null,
+        
+        times: {
+            start: {
+                day: 1,
+                month: 1,
+                year: 2020,
+            },
+            end: {
+                day: 10,
+                month: 1,
+                year: 2020,
+            },
+        },
 
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
-            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
-        ]
+        // API
+        api: axios.create({
+            baseURL: 'http://data.fixer.io/api/',
+            timeout: 5000,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }),
+        apiKey: '73efda1fbe5e9eafe4b8878d0cc87bce',
     },
     methods: {
         startRise(node) {
@@ -106,22 +82,121 @@ var app = new Vue({
             }, bubbleDelay); // add bubbles based on size of screen
         },
         addRefreshListener() {
+            if(!this.baseCurrencyValid) {
+                return;
+            }
+
             let refreshBtn = document.getElementById('refresh-btn').addEventListener('click', (e) => {
                 let image = document.getElementById('refresh-btn-image');
                 image.dataset.rotation = parseInt(image.dataset.rotation) + 360;
                 image.style.transform = `rotate(${image.dataset.rotation}deg)`;
             });
+
+            this.getLatest();
         },
         openMenu(name) {
             console.log('clicked menu for ' + name);
-        }
+        },
+
+        updateCurrencies(results) {
+            console.log(results);
+            for (const [key, val] of Object.entries(results.rates)) {
+                let curr = this.currencies.find(el => el.name == key);
+                if (curr) {
+                    curr.value = val;
+                } else {
+                    this.currencies.push({ name: key, value: val });
+                }
+            }
+        },
+
+        // API Calls
+        getLatest(curr = this.baseCurrency, symbols = this.currencyOptions) {
+            this.api.get('/latest', {
+                params: {
+                    'access_key': this.apiKey,
+                    'symbols': symbols.join(),
+                    'base': this.baseCurrency,
+                    'format': 1,
+                }
+            }).then(response => {
+                console.log(response);
+                this.updateCurrencies(response.data);
+            }).catch(err => {
+                console.error(err);
+            });
+        },
+        getSymbols() {
+            this.api.get('/symbols', {
+                params: {
+                    'access_key': this.apiKey,
+                }
+            }).then(response => {
+                for (const [key, val] of Object.entries(response.data.symbols)) {
+                    this.currencyOptions.push(key);
+                }
+            }).catch(err => {
+                console.error(err);
+            });
+        },
+        getTimeSeries(symbols) { // Only premium
+            this.api.get('/timeseries', {
+                params: {
+                    'access_key': this.apiKey,
+                    'start_date': `${this.times.start.year}-${this.times.start.month}-${this.times.start.day}`,
+                    'end_date': `${this.times.end.year}-${this.times.end.month}-${this.times.end.day}`,
+                    'symbols': symbols.join(),
+                    'base': 'EUR',
+                }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(err => {
+                console.error(err);
+            });
+        },
+        convertCurrency(from, to, amount) { // Only premium
+            this.api.get('/convert', {
+                params: {
+                    'access_key': this.apiKey,
+                    'from': from,
+                    'to': to,
+                    'amount': amount,
+                }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(err => {
+                console.error(err);
+            });
+        },
     },
     mounted() {
         this.initRise();
         this.addBubbles();
         this.addRefreshListener();
         
+        this.getSymbols();
+        this.convertCurrency('EUR', 'USD', 5);
     },
+    computed: {
+        currencyResults: function () {
+            if (this.searchString) {
+                return this.currencies.filter(el => el.name.includes(this.searchString.toUpperCase()));
+            }
+            return this.currencies;
+        },
+        searchValid: function () {
+            if (this.searchString && this.currencyResults.length == 0) {
+                return false; // if the search field is valid but does not return any results
+            }
+            return true;
+        },
+        baseCurrencyValid: function () {
+            if (this.baseCurrency == 'EUR') {
+                return true; // API only allows EUR as base currency for free users :(
+            }
+            return false;
+        },
+    }
 });
 
 
