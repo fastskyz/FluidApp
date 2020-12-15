@@ -1,0 +1,142 @@
+form {
+    width: 100%;
+    margin: 5rem 0;
+
+    max-width: 700px;
+    display: inline-block;
+
+    .form {
+        &-group {
+            width: 100%;
+
+            margin: 1rem 0;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-input {
+            flex: 1;
+            position: relative;
+            font-size: 1rem;
+
+            &:first-child {
+                margin-right: 0.5rem;
+            }
+
+            &:last-child {
+                margin-left: 0.5rem;
+            }
+
+            input {
+                width: calc(100% - 2rem);
+                
+                outline: none;
+                border: var(--color-white) 2px solid;
+                border-radius: 1rem;
+
+                padding: 0.5rem 1rem;
+                color: var(--color-white);
+
+                background-color: var(--color-black);
+            }
+
+            label {
+                position: absolute;
+                top: 0.5rem;
+                left: 1rem;
+
+                transition: 400ms ease;
+                opacity: 1;
+
+                font-weight: 300;
+                text-transform: lowercase;
+            }
+
+            input:focus ~ label {
+                left: 5rem;
+                opacity: 0;
+            }
+
+            input:valid ~ label {
+                left: 5rem;
+                opacity: 0;
+            }
+        }
+    }
+
+    .button {
+        padding: 0.5rem 2rem;
+
+        &:last-child {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.filters {
+    padding: 0 2rem;
+    flex: 1;
+
+    display: flex;
+
+    .filter {
+        position: relative;
+        text-align: left;
+
+        margin: 0 0.5rem;
+
+        * {
+            display: block;
+        }
+
+        label {
+            font-weight: 600;
+            margin-left: 0.75rem;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+            line-height: 1.25rem;
+        }
+
+        select, input {
+            padding: 0.25rem 0.75rem;
+            outline: none;
+
+            min-width: 200px;
+            
+            border: 2px solid var(--color-black);
+            border-radius: 1.5rem;
+
+            font-size: 0.75rem;
+            line-height: 1rem;
+            font-weight: 600;
+        }
+
+        .select-custom-arrow ~ select {
+            appearance: none;
+        }
+
+        .select-custom-arrow {
+            position: absolute;
+            right: 0.75rem;
+            bottom: 0.5rem;
+
+            width: 0.75rem;
+            height: 0.75rem;
+
+            svg {
+                max-width: 100%;
+                max-height: 100%;
+
+                g line {
+                    fill: none;
+                    stroke: var(--color-black);
+                    stroke-linecap: round;
+                    stroke-width: 2px;
+                }
+            }
+        }
+    }
+}

@@ -41,6 +41,15 @@
             height: 33%;
         }
     }
+}
 
-    
+.font {
+    &-s {
+        @for $i from 1 through 6 {
+            &-#{$i} {
+                font-size: #{$i}rem;
+                line-height: #{$i + 0.25}rem;
+            }
+        }
+    }
 }

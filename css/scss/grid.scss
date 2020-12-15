@@ -1,0 +1,46 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    min-height: 400px;
+    max-width: 100%;
+
+    &--gap {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                gap: #{$i * 0.25}rem;
+            }
+        }
+    }
+}
+
+.grid-item {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    span {
+        padding: 0.5rem;
+        cursor: pointer;
+    } 
+}
+
+.grid-span {
+    &-x {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                grid-column: span #{$i};
+            }
+        }
+    }
+
+    &-y {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                grid-row: span #{$i};
+            }
+        }
+    }    
+}

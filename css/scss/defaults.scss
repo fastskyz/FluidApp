@@ -32,7 +32,15 @@ div {
 
     &.pink {
         background-color: var(--color-pink-dark);
-    }    
+    }
+
+    &.white {
+        background-color: var(--color-white);
+    }
+
+    &.black {
+        background-color: var(--color-black);
+    }
 }
 
 p, b, a, i, h1, h2, h3, h4, h5, h6, span {
@@ -42,6 +50,14 @@ p, b, a, i, h1, h2, h3, h4, h5, h6, span {
 
     &.pink {
         color: var(--color-pink-dark);
+    }
+
+    &.white {
+        color: var(--color-white);
+    }
+    
+    &.black {
+        color: var(--color-black);
     }
 
     &.regular {
@@ -66,5 +82,86 @@ p, b, a, i, h1, h2, h3, h4, h5, h6, span {
 
     &.lowercase {
         text-transform: lowercase;
+    }
+}
+
+
+.pd {
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            padding: #{$i * 0.25}rem;
+        }
+    }
+
+    &-t {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                padding-top: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-b {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                padding-bottom: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-r {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                padding-right: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-l {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                padding-left: #{$i * 0.25}rem;
+            }
+        }
+    }
+}
+
+.mr {
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            margin: #{$i * 0.25}rem;
+        }
+    }
+
+    &-t {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                margin-top: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-b {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                margin-bottom: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-r {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                margin-right: #{$i * 0.25}rem;
+            }
+        }
+    }
+
+    &-l {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                margin-left: #{$i * 0.25}rem;
+            }
+        }
     }
 }

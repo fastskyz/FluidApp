@@ -50,6 +50,24 @@ var app = new Vue({
     data: {
         bubbles: [
             { size: 2 },
+        ],
+        currencyOptions: [
+            'EUR',
+            'USD',
+            'GBP',
+            'AUD',
+            'CAD',
+            'JPY',
+        ],
+        currencies: [
+            { name: 'Euro', short: 'EUR', value: 1.000, up: true, size: { x: 4, y: 1 } },
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
+            { name: 'Dollar', short: 'USD', value: 0.984, up: false, size: { x: 4, y: 1 } },
         ]
     },
     methods: {
@@ -87,13 +105,21 @@ var app = new Vue({
                 }, 10);
             }, bubbleDelay); // add bubbles based on size of screen
         },
-
-
+        addRefreshListener() {
+            let refreshBtn = document.getElementById('refresh-btn').addEventListener('click', (e) => {
+                let image = document.getElementById('refresh-btn-image');
+                image.dataset.rotation = parseInt(image.dataset.rotation) + 360;
+                image.style.transform = `rotate(${image.dataset.rotation}deg)`;
+            });
+        },
+        openMenu(name) {
+            console.log('clicked menu for ' + name);
+        }
     },
     mounted() {
         this.initRise();
         this.addBubbles();
-        
+        this.addRefreshListener();
         
     },
 });
