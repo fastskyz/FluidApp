@@ -169,6 +169,22 @@ footer {
   cursor: pointer;
 }
 
+.chart-view .control-bar {
+  height: auto;
+}
+.chart-view .control-bar .filters {
+  justify-content: center;
+  padding: 0;
+  flex-wrap: wrap;
+  flex-direction: row !important;
+}
+.chart-view .control-bar .filters .filter {
+  margin: 0 0.25rem;
+}
+.chart-view .chart {
+  margin: 2rem 0 10rem;
+}
+
 /*
     Defaults
 */

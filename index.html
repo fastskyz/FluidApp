@@ -86,72 +86,128 @@
             </header>
 
             <main>
-                <div class="control-bar">
-                    <div class="live-sign">
-                        <div class="live-dot"></div> Live
+                <div class="chart-view">
+
+                    <div class="control-bar">
+                        <div class="filters">
+                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                                <label for="base-currency">
+                                    Currency one:
+                                </label>
+    
+                                <select name="compareCurrenciesOne" v-model="compareCurrencies[0]">
+                                    <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
+                                </select>
+                            </div>
+    
+                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                                <label for="base-currency">
+                                    Currency two:
+                                </label>
+    
+                                <select name="compareCurrenciesTwo" v-model="compareCurrencies[1]">
+                                    <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
+                                </select>
+                            </div>
+
+                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                                <label for="base-currency">
+                                    Currency three:
+                                </label>
+    
+                                <select name="compareCurrenciesThree" v-model="compareCurrencies[2]">
+                                    <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
+                                </select>
+                            </div>
+
+                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                                <label for="base-currency">
+                                    Currency four:
+                                </label>
+    
+                                <select name="compareCurrenciesFour" v-model="compareCurrencies[3]">
+                                    <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="filters">
-                        <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
-                            <label for="base-currency">
-                                Base currency:
-                            </label>
+                    <div class="chart">
+                        <canvas id="compare-chart">
 
-                            <select name="base-currency" id="base-currency" v-model="baseCurrency">
-                                <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
-                            </select>
-                        </div>
-
-                        <div :class="`filter filter--${ searchValid ? 'valid' : 'invalid' }`">
-                            <label for="search">
-                                Search:
-                            </label>
-
-                            <input type="text" id="search" name="search" v-model="searchString">
-                        </div>
-                    </div>
-
-                    <div class="refresh">
-                        <a id="refresh-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="44.849" height="40.022" viewBox="0 0 44.849 40.022" id="refresh-btn-image" data-rotation="0">
-                                <g id="rotate-cw" transform="translate(-0.982 -0.989)">
-                                  <path id="Path_14" data-name="Path 14" d="M29,4V16H17" transform="translate(14.001 0.999)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-                                  <path id="Path_15" data-name="Path 15" d="M37.982,27A18,18,0,1,1,33.742,8.279L43,17" transform="translate(0 0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-                                </g>
-                            </svg>
-                        </a>                     
+                        </canvas>
                     </div>
                 </div>
 
-                <div class="grid grid--gap-4 pd-t-8">
-                    <div class="currency-block grid-item grid-span-x-4 grid-span-y-1" v-for="curr in currencyResults">
-                        <div class="sign uppercase font-s-2 black">
-                            <b class="white">
-                                {{ curr.name }}
-                            </b>
-                        </div>
 
-                        <div class="value">
-                            <div :class="`status ${curr.value <= 1 ? 'status--up' : 'status--down'}`">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
-                                    <path id="Polygon_2" data-name="Polygon 2" d="M16,0,32,24H0Z" fill="#ed3572"/>
-                                </svg>                                
+                <div class="currency-list">
+                    <div class="control-bar">
+                        <div class="live-sign">
+                            <div class="live-dot"></div> Live
+                        </div>
+    
+                        <div class="filters">
+                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                                <label for="base-currency">
+                                    Base currency:
+                                </label>
+    
+                                <select name="base-currency" id="base-currency" v-model="baseCurrency">
+                                    <option v-for="curr in currencyOptions" :value="curr">{{ curr }}</option>
+                                </select>
                             </div>
-                            <span class="number black mr-l-2">
-                                {{ curr.value.toFixed(8) }}
-                            </span>
+    
+                            <div :class="`filter filter--${ searchValid ? 'valid' : 'invalid' }`">
+                                <label for="search">
+                                    Search:
+                                </label>
+    
+                                <input type="text" id="search" name="search" v-model="searchString">
+                            </div>
                         </div>
-
-                        <div class="menu" @click="openMenu(curr.name)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" viewBox="0 0 4 16">
-                                <g id="More" transform="translate(-451 -1217)">
-                                    <circle id="Ellipse_20" data-name="Ellipse 20" cx="2" cy="2" r="2" transform="translate(451 1217)"/>
-                                    <circle id="Ellipse_21" data-name="Ellipse 21" cx="2" cy="2" r="2" transform="translate(451 1223)"/>
-                                    <circle id="Ellipse_22" data-name="Ellipse 22" cx="2" cy="2" r="2" transform="translate(451 1229)"/>
-                                </g>
-                            </svg>
+    
+                        <div class="refresh">
+                            <a id="refresh-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44.849" height="40.022" viewBox="0 0 44.849 40.022" id="refresh-btn-image" data-rotation="0">
+                                    <g id="rotate-cw" transform="translate(-0.982 -0.989)">
+                                      <path id="Path_14" data-name="Path 14" d="M29,4V16H17" transform="translate(14.001 0.999)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+                                      <path id="Path_15" data-name="Path 15" d="M37.982,27A18,18,0,1,1,33.742,8.279L43,17" transform="translate(0 0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+                                    </g>
+                                </svg>
+                            </a>                     
                         </div>
-                        
+                    </div>
+    
+                    <div class="grid grid--gap-4 pd-t-8">
+                        <div class="currency-block grid-item grid-span-x-4 grid-span-y-1" v-for="curr in currencyResults">
+                            <div class="sign uppercase font-s-2 black">
+                                <b class="white">
+                                    {{ curr.name }}
+                                </b>
+                            </div>
+    
+                            <div class="value">
+                                <div :class="`status ${curr.value <= 1 ? 'status--up' : 'status--down'}`">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
+                                        <path id="Polygon_2" data-name="Polygon 2" d="M16,0,32,24H0Z" fill="#ed3572"/>
+                                    </svg>                                
+                                </div>
+                                <span class="number black mr-l-2">
+                                    {{ curr.value.toFixed(8) }}
+                                </span>
+                            </div>
+    
+                            <div class="menu" @click="openMenu(curr.name)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" viewBox="0 0 4 16">
+                                    <g id="More" transform="translate(-451 -1217)">
+                                        <circle id="Ellipse_20" data-name="Ellipse 20" cx="2" cy="2" r="2" transform="translate(451 1217)"/>
+                                        <circle id="Ellipse_21" data-name="Ellipse 21" cx="2" cy="2" r="2" transform="translate(451 1223)"/>
+                                        <circle id="Ellipse_22" data-name="Ellipse 22" cx="2" cy="2" r="2" transform="translate(451 1229)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </main>

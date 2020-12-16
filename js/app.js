@@ -22,6 +22,12 @@ var app = new Vue({
         baseCurrency: 'EUR',
         searchString: '',
         searchResults: null,
+        compareCurrencies: [
+            'EUR',
+            'USD',
+            'CAD',
+            'GBP',
+        ],
         
         times: {
             start: {
@@ -36,10 +42,13 @@ var app = new Vue({
             },
         },
 
+        // Chart
+        chart: null,
+
         // API
         api: axios.create({
             baseURL: 'http://data.fixer.io/api/',
-            timeout: 5000,
+            timeout: 10000,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -99,7 +108,6 @@ var app = new Vue({
         },
 
         updateCurrencies(results) {
-            console.log(results);
             for (const [key, val] of Object.entries(results.rates)) {
                 let curr = this.currencies.find(el => el.name == key);
                 if (curr) {
@@ -108,6 +116,58 @@ var app = new Vue({
                     this.currencies.push({ name: key, value: val });
                 }
             }
+        },
+        // Chart
+        addCompareChart() {
+            try {
+                let filtered = [];
+
+                this.compareCurrencies.forEach(c => {
+                    filtered.push(this.currencies.find(cu => cu.name == c));
+                });
+
+                console.log(filtered);
+
+                var ctx = document.getElementById('compare-chart').getContext('2d');
+                this.chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: filtered.map(c => c.name),
+                        datasets: [{
+                            label: 'Compare',
+                            data: filtered.map(c => c.value),
+                            borderColor: 'rgba(237, 53, 114, 1)',
+                            fill: false,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                            }]
+                        },
+                    }
+                });
+            } catch (error) {
+                console.log("The API did not return a response in time. Please refresh to try again.");
+                console.error(error);
+            }
+        },
+        updateCompareChart() {
+
+            let filtered = [];
+
+            this.compareCurrencies.forEach(c => {
+                filtered.push(this.currencies.find(cu => cu.name == c));
+            });
+            
+            this.chart.data.labels = filtered.map(c => c.name);
+            this.chart.data.datasets[0].data = filtered.map(c => c.value);
+
+            this.chart.update();
         },
 
         // API Calls
@@ -120,7 +180,6 @@ var app = new Vue({
                     'format': 1,
                 }
             }).then(response => {
-                console.log(response);
                 this.updateCurrencies(response.data);
             }).catch(err => {
                 console.error(err);
@@ -135,6 +194,10 @@ var app = new Vue({
                 for (const [key, val] of Object.entries(response.data.symbols)) {
                     this.currencyOptions.push(key);
                 }
+
+                window.setTimeout(() => {
+                    this.addCompareChart();
+                }, 400);
             }).catch(err => {
                 console.error(err);
             });
@@ -175,7 +238,6 @@ var app = new Vue({
         this.addRefreshListener();
         
         this.getSymbols();
-        this.convertCurrency('EUR', 'USD', 5);
     },
     computed: {
         currencyResults: function () {
@@ -196,41 +258,15 @@ var app = new Vue({
             }
             return false;
         },
-    }
-});
-
-
-// Charts
-/*
-var ctx = document.getElementById('exampleChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07'],
-        datasets: [{
-            label: 'Euro',
-            data: [1.033, 1.046, 1.034, 1.01, 1.03, 1.034, 1.044],
-            borderColor: 'rgba(237, 53, 114, 1)',
-            fill: false,
-            borderWidth: 1
-        },
-        {
-            label: 'Dollar',
-            data: [0.993, 0.995, 0.991, 0.982, 0.988, 0.994, 0.992],
-            borderColor: 'rgba(119, 197, 147, 1)',
-            borderWidth: 1,
-            fill: false,
-        }]
     },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: false
-                },
-            }]
-        },
+    watch: {
+        compareCurrencies: {
+            deep: true,
+            handler() {
+                window.setTimeout(() => {
+                    this.updateCompareChart();
+                }, 200);
+            }
+        }
     }
 });
-
-*/
