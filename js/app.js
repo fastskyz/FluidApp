@@ -48,7 +48,7 @@ var app = new Vue({
         // API
         api: axios.create({
             baseURL: 'http://data.fixer.io/api/',
-            timeout: 10000,
+            timeout: 20000,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -100,8 +100,6 @@ var app = new Vue({
                 image.dataset.rotation = parseInt(image.dataset.rotation) + 360;
                 image.style.transform = `rotate(${image.dataset.rotation}deg)`;
             });
-
-            this.getLatest();
         },
         openMenu(name) {
             console.log('clicked menu for ' + name);
@@ -179,6 +177,10 @@ var app = new Vue({
                 }
             }).then(response => {
                 this.updateCurrencies(response.data);
+
+                window.setTimeout(() => {
+                    this.addCompareChart();
+                }, 400);
             }).catch(err => {
                 console.error(err);
             });
@@ -193,9 +195,7 @@ var app = new Vue({
                     this.currencyOptions.push(key);
                 }
 
-                window.setTimeout(() => {
-                    this.addCompareChart();
-                }, 400);
+                this.getLatest();
             }).catch(err => {
                 console.error(err);
             });
@@ -242,7 +242,7 @@ var app = new Vue({
         this.initRise();
         this.addBubbles();
         this.addRefreshListener();
-        
+
         this.getSymbols();
     },
     computed: {
