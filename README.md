@@ -1,1 +1,3 @@
-### Promo page for fluid
+### Fluid web app
+
+School project
