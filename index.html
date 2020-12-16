@@ -88,9 +88,13 @@
             <main>
                 <div class="chart-view">
 
+                    <div class="title title--small mr-b-4">
+                        <span class="green">Compare</span> currencies
+                    </div>
+
                     <div class="control-bar">
                         <div class="filters">
-                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                            <div :class="`filter filter--${ compareValid(0) ? 'valid' : 'invalid' }`">
                                 <label for="base-currency">
                                     Currency one:
                                 </label>
@@ -100,7 +104,7 @@
                                 </select>
                             </div>
     
-                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                            <div :class="`filter filter--${ compareValid(1) ? 'valid' : 'invalid' }`">
                                 <label for="base-currency">
                                     Currency two:
                                 </label>
@@ -110,7 +114,7 @@
                                 </select>
                             </div>
 
-                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                            <div :class="`filter filter--${ compareValid(2) ? 'valid' : 'invalid' }`">
                                 <label for="base-currency">
                                     Currency three:
                                 </label>
@@ -120,7 +124,7 @@
                                 </select>
                             </div>
 
-                            <div :class="`filter filter--${ baseCurrencyValid ? 'valid' : 'invalid' }`">
+                            <div :class="`filter filter--${ compareValid(3) ? 'valid' : 'invalid' }`">
                                 <label for="base-currency">
                                     Currency four:
                                 </label>
@@ -141,6 +145,10 @@
 
 
                 <div class="currency-list">
+                    <div class="title title--small mr-b-4">
+                        <span class="pink">Complete</span> currency list
+                    </div>
+
                     <div class="control-bar">
                         <div class="live-sign">
                             <div class="live-dot"></div> Live

@@ -231,6 +231,14 @@ var app = new Vue({
                 console.error(err);
             });
         },
+
+        compareValid(idx) {
+            let results = this.compareCurrencies.filter(el => el == this.compareCurrencies[idx]);
+            if (results.length > 1) {
+                return false;
+            }
+            return true;
+        }
     },
     mounted() {
         this.initRise();
@@ -258,6 +266,8 @@ var app = new Vue({
             }
             return false;
         },
+
+        
     },
     watch: {
         compareCurrencies: {
