@@ -126,8 +126,6 @@ var app = new Vue({
                     filtered.push(this.currencies.find(cu => cu.name == c));
                 });
 
-                console.log(filtered);
-
                 var ctx = document.getElementById('compare-chart').getContext('2d');
                 this.chart = new Chart(ctx, {
                     type: 'bar',
